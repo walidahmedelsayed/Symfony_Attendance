@@ -55,11 +55,15 @@ class User
      */
     private $requests;
 
-    public function __construct()
-    {
-        $this->requests = new ArrayCollection();
-    }
+    /**
+     * @ORM\OneToMany(targetEntity="StudentAttendance", mappedBy="user", cascade={"all"})
+     * */
+    protected $studentAttendance;
 
+    public function __construct() {
+        $this->requests = new ArrayCollection();
+        $this->studentAttendance = new ArrayCollection();
+    }
 
 
     /**
@@ -151,7 +155,7 @@ class User
      *
      * @return User
      */
-    public function setTrack(\AppBundle\Entity\Track $track = null)
+    public function setTrack(Track $track = null)
     {
         $this->track = $track;
 
@@ -200,5 +204,40 @@ class User
     public function getRequests()
     {
         return $this->requests;
+    }
+
+
+    /**
+     * Add studentAttendance
+     *
+     * @param \AppBundle\Entity\StudentAttendance $studentAttendance
+     *
+     * @return User
+     */
+    public function addStudentAttendance(\AppBundle\Entity\StudentAttendance $studentAttendance)
+    {
+        $this->studentAttendance[] = $studentAttendance;
+
+        return $this;
+    }
+
+    /**
+     * Remove studentAttendance
+     *
+     * @param \AppBundle\Entity\StudentAttendance $studentAttendance
+     */
+    public function removeStudentAttendance(\AppBundle\Entity\StudentAttendance $studentAttendance)
+    {
+        $this->studentAttendance->removeElement($studentAttendance);
+    }
+
+    /**
+     * Get studentAttendance
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStudentAttendance()
+    {
+        return $this->studentAttendance;
     }
 }
