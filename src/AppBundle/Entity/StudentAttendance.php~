@@ -162,28 +162,4 @@ class StudentAttendance
     {
         return $this->attendance;
     }
-
-    /**
-     * Set arrivalTime
-     *
-     * @param \DateTime $arrivalTime
-     *
-     * @return StudentAttendance
-     */
-    public function setArrivalTime($arrivalTime)
-    {
-        $this->arrivalTime = $arrivalTime;
-
-        return $this;
-    }
-
-    /**
-     * Get arrivalTime
-     *
-     * @return \DateTime
-     */
-    public function getArrivalTime()
-    {
-        return $this->arrivalTime;
-    }
 }
