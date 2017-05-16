@@ -93,7 +93,7 @@ class RequestsController extends FOSRestController
         $sn = $this->getDoctrine()->getManager();
         $request = $this->getDoctrine()->getRepository('AppBundle:Request')->find($id);
         if (empty($request)) {
-            return new View("user not found", Response::HTTP_NOT_FOUND);
+            return new View("request not found", Response::HTTP_NOT_FOUND);
         } else {
             $sn->remove($request);
             $sn->flush();
