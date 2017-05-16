@@ -17,6 +17,9 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="FOSRestBundle">FOS\RestBundle\FOSRestBundle</parameter>
+      <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
+      <parameter key="NelmioCorsBundle">Nelmio\CorsBundle\NelmioCorsBundle</parameter>
+      <parameter key="LexikJWTAuthenticationBundle">Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -68,6 +71,21 @@
         <parameter key="path">/home/habib/working/php/Symfony_Attendance/vendor/friendsofsymfony/rest-bundle</parameter>
         <parameter key="namespace">FOS\RestBundle</parameter>
       </parameter>
+      <parameter key="JMSSerializerBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/home/habib/working/php/Symfony_Attendance/vendor/jms/serializer-bundle/JMS/SerializerBundle</parameter>
+        <parameter key="namespace">JMS\SerializerBundle</parameter>
+      </parameter>
+      <parameter key="NelmioCorsBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/home/habib/working/php/Symfony_Attendance/vendor/nelmio/cors-bundle</parameter>
+        <parameter key="namespace">Nelmio\CorsBundle</parameter>
+      </parameter>
+      <parameter key="LexikJWTAuthenticationBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/home/habib/working/php/Symfony_Attendance/vendor/lexik/jwt-authentication-bundle</parameter>
+        <parameter key="namespace">Lexik\Bundle\JWTAuthenticationBundle</parameter>
+      </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle</parameter>
@@ -101,6 +119,10 @@
     <parameter key="mailer_user">null</parameter>
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">2fa2cfb6722bf3090ae9735696959d0db98a490c</parameter>
+    <parameter key="jwt_private_key_path">/home/habib/working/php/Symfony_Attendance/app/../var/jwt/private.pem</parameter>
+    <parameter key="jwt_public_key_path">/home/habib/working/php/Symfony_Attendance/app/../var/jwt/public.pem</parameter>
+    <parameter key="jwt_key_pass_phrase"></parameter>
+    <parameter key="jwt_token_ttl">3600</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
@@ -333,7 +355,81 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="jms_serializer.form_error_handler.class">JMS\Serializer\Handler\FormErrorHandler</parameter>
     <parameter key="fos_rest.format_listener.rules">null</parameter>
+    <parameter key="jms_serializer.metadata.file_locator.class">Metadata\Driver\FileLocator</parameter>
+    <parameter key="jms_serializer.metadata.annotation_driver.class">JMS\Serializer\Metadata\Driver\AnnotationDriver</parameter>
+    <parameter key="jms_serializer.metadata.chain_driver.class">Metadata\Driver\DriverChain</parameter>
+    <parameter key="jms_serializer.metadata.yaml_driver.class">JMS\Serializer\Metadata\Driver\YamlDriver</parameter>
+    <parameter key="jms_serializer.metadata.xml_driver.class">JMS\Serializer\Metadata\Driver\XmlDriver</parameter>
+    <parameter key="jms_serializer.metadata.php_driver.class">JMS\Serializer\Metadata\Driver\PhpDriver</parameter>
+    <parameter key="jms_serializer.metadata.doctrine_type_driver.class">JMS\Serializer\Metadata\Driver\DoctrineTypeDriver</parameter>
+    <parameter key="jms_serializer.metadata.doctrine_phpcr_type_driver.class">JMS\Serializer\Metadata\Driver\DoctrinePHPCRTypeDriver</parameter>
+    <parameter key="jms_serializer.metadata.lazy_loading_driver.class">Metadata\Driver\LazyLoadingDriver</parameter>
+    <parameter key="jms_serializer.metadata.metadata_factory.class">Metadata\MetadataFactory</parameter>
+    <parameter key="jms_serializer.metadata.cache.file_cache.class">Metadata\Cache\FileCache</parameter>
+    <parameter key="jms_serializer.event_dispatcher.class">JMS\Serializer\EventDispatcher\LazyEventDispatcher</parameter>
+    <parameter key="jms_serializer.camel_case_naming_strategy.class">JMS\Serializer\Naming\CamelCaseNamingStrategy</parameter>
+    <parameter key="jms_serializer.identical_property_naming_strategy.class">JMS\Serializer\Naming\IdenticalPropertyNamingStrategy</parameter>
+    <parameter key="jms_serializer.serialized_name_annotation_strategy.class">JMS\Serializer\Naming\SerializedNameAnnotationStrategy</parameter>
+    <parameter key="jms_serializer.cache_naming_strategy.class">JMS\Serializer\Naming\CacheNamingStrategy</parameter>
+    <parameter key="jms_serializer.doctrine_object_constructor.class">JMS\Serializer\Construction\DoctrineObjectConstructor</parameter>
+    <parameter key="jms_serializer.unserialize_object_constructor.class">JMS\Serializer\Construction\UnserializeObjectConstructor</parameter>
+    <parameter key="jms_serializer.version_exclusion_strategy.class">JMS\Serializer\Exclusion\VersionExclusionStrategy</parameter>
+    <parameter key="jms_serializer.serializer.class">JMS\Serializer\Serializer</parameter>
+    <parameter key="jms_serializer.twig_extension.class">JMS\Serializer\Twig\SerializerExtension</parameter>
+    <parameter key="jms_serializer.twig_runtime_extension.class">JMS\Serializer\Twig\SerializerRuntimeExtension</parameter>
+    <parameter key="jms_serializer.twig_runtime_extension_helper.class">JMS\Serializer\Twig\SerializerRuntimeHelper</parameter>
+    <parameter key="jms_serializer.templating.helper.class">JMS\SerializerBundle\Templating\SerializerHelper</parameter>
+    <parameter key="jms_serializer.json_serialization_visitor.class">JMS\Serializer\JsonSerializationVisitor</parameter>
+    <parameter key="jms_serializer.json_serialization_visitor.options">0</parameter>
+    <parameter key="jms_serializer.json_deserialization_visitor.class">JMS\Serializer\JsonDeserializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_serialization_visitor.class">JMS\Serializer\XmlSerializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_deserialization_visitor.class">JMS\Serializer\XmlDeserializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_deserialization_visitor.doctype_whitelist" type="collection"/>
+    <parameter key="jms_serializer.xml_serialization_visitor.format_output">true</parameter>
+    <parameter key="jms_serializer.yaml_serialization_visitor.class">JMS\Serializer\YamlSerializationVisitor</parameter>
+    <parameter key="jms_serializer.handler_registry.class">JMS\Serializer\Handler\LazyHandlerRegistry</parameter>
+    <parameter key="jms_serializer.datetime_handler.class">JMS\Serializer\Handler\DateHandler</parameter>
+    <parameter key="jms_serializer.array_collection_handler.class">JMS\Serializer\Handler\ArrayCollectionHandler</parameter>
+    <parameter key="jms_serializer.php_collection_handler.class">JMS\Serializer\Handler\PhpCollectionHandler</parameter>
+    <parameter key="jms_serializer.constraint_violation_handler.class">JMS\Serializer\Handler\ConstraintViolationHandler</parameter>
+    <parameter key="jms_serializer.doctrine_proxy_subscriber.class">JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber</parameter>
+    <parameter key="jms_serializer.stopwatch_subscriber.class">JMS\SerializerBundle\Serializer\StopwatchEventSubscriber</parameter>
+    <parameter key="jms_serializer.configured_context_factory.class">JMS\SerializerBundle\ContextFactory\ConfiguredContextFactory</parameter>
+    <parameter key="jms_serializer.expression_evaluator.class">JMS\Serializer\Expression\ExpressionEvaluator</parameter>
+    <parameter key="jms_serializer.expression_language.class">Symfony\Component\ExpressionLanguage\ExpressionLanguage</parameter>
+    <parameter key="jms_serializer.expression_language.function_provider.class">JMS\SerializerBundle\ExpressionLanguage\BasicSerializerFunctionsProvider</parameter>
+    <parameter key="jms_serializer.accessor_strategy.default.class">JMS\Serializer\Accessor\DefaultAccessorStrategy</parameter>
+    <parameter key="jms_serializer.accessor_strategy.expression.class">JMS\Serializer\Accessor\ExpressionAccessorStrategy</parameter>
+    <parameter key="nelmio_cors.map" type="collection"/>
+    <parameter key="nelmio_cors.defaults" type="collection">
+      <parameter key="allow_origin">true</parameter>
+      <parameter key="allow_credentials">false</parameter>
+      <parameter key="allow_headers">true</parameter>
+      <parameter key="expose_headers" type="collection"/>
+      <parameter key="allow_methods" type="collection">
+        <parameter>GET</parameter>
+        <parameter>POST</parameter>
+        <parameter>PUT</parameter>
+        <parameter>DELETE</parameter>
+        <parameter>OPTIONS</parameter>
+      </parameter>
+      <parameter key="max_age">3600</parameter>
+      <parameter key="hosts" type="collection"/>
+      <parameter key="origin_regex">false</parameter>
+      <parameter key="forced_allow_origin_value">null</parameter>
+    </parameter>
+    <parameter key="nelmio_cors.cors_listener.class">Nelmio\CorsBundle\EventListener\CorsListener</parameter>
+    <parameter key="nelmio_cors.options_resolver.class">Nelmio\CorsBundle\Options\Resolver</parameter>
+    <parameter key="nelmio_cors.options_provider.config.class">Nelmio\CorsBundle\Options\ConfigProvider</parameter>
+    <parameter key="lexik_jwt_authentication.private_key_path">/home/habib/working/php/Symfony_Attendance/app/../var/jwt/private.pem</parameter>
+    <parameter key="lexik_jwt_authentication.public_key_path">/home/habib/working/php/Symfony_Attendance/app/../var/jwt/public.pem</parameter>
+    <parameter key="lexik_jwt_authentication.pass_phrase"></parameter>
+    <parameter key="lexik_jwt_authentication.token_ttl">3600</parameter>
+    <parameter key="lexik_jwt_authentication.user_identity_field">username</parameter>
+    <parameter key="lexik_jwt_authentication.encoder.signature_algorithm">RS256</parameter>
+    <parameter key="lexik_jwt_authentication.encoder.crypto_engine">openssl</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -464,7 +560,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>KctgkoaJEB</argument>
                 <argument>0</argument>
-                <argument>LED5vKzxoBrhxXeKBJ-Nq8</argument>
+                <argument>FOIXK-uBElSQvOc4v92FuP</argument>
                 <argument>/home/habib/working/php/Symfony_Attendance/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -661,7 +757,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>DBUZXdo6UA</argument>
       <argument>0</argument>
-      <argument>LED5vKzxoBrhxXeKBJ-Nq8</argument>
+      <argument>FOIXK-uBElSQvOc4v92FuP</argument>
       <argument>/home/habib/working/php/Symfony_Attendance/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -671,7 +767,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>xBkP+-tDKy</argument>
       <argument>0</argument>
-      <argument>LED5vKzxoBrhxXeKBJ-Nq8</argument>
+      <argument>FOIXK-uBElSQvOc4v92FuP</argument>
       <argument>/home/habib/working/php/Symfony_Attendance/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -681,7 +777,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>CC3lS3qJTw</argument>
       <argument>0</argument>
-      <argument>LED5vKzxoBrhxXeKBJ-Nq8</argument>
+      <argument>FOIXK-uBElSQvOc4v92FuP</argument>
       <argument>/home/habib/working/php/Symfony_Attendance/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1432,6 +1528,22 @@
         </argument>
         <argument>34</argument>
       </call>
+      <call method="addListenerService">
+        <argument>kernel.controller</argument>
+        <argument type="collection">
+          <argument>fos_rest.param_fetcher_listener</argument>
+          <argument>onKernelController</argument>
+        </argument>
+        <argument>5</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>nelmio_cors.cors_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>250</argument>
+      </call>
       <call method="addSubscriberService">
         <argument>response_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ResponseListener</argument>
@@ -1759,82 +1871,6 @@
     <service id="annotations.reader" class="Doctrine\Common\Annotations\AnnotationReader" public="false">
       <autowiring-type>Doctrine\Common\Annotations\Reader</autowiring-type>
     </service>
-    <service id="serializer" class="Symfony\Component\Serializer\Serializer">
-      <argument type="collection">
-        <argument type="service">
-          <service class="FOS\RestBundle\Serializer\Normalizer\FormErrorNormalizer" public="false">
-            <tag name="serializer.normalizer" priority="-10"/>
-            <argument type="service" id="translator"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer" public="false">
-            <tag name="serializer.normalizer" priority="-900"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Normalizer\DateTimeNormalizer" public="false">
-            <tag name="serializer.normalizer" priority="-910"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Normalizer\DataUriNormalizer" public="false">
-            <tag name="serializer.normalizer" priority="-920"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Normalizer\ArrayDenormalizer" public="false">
-            <tag name="serializer.normalizer" priority="-990"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Normalizer\ObjectNormalizer" public="false">
-            <tag name="serializer.normalizer" priority="-1000"/>
-            <argument type="service">
-              <service class="Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory" public="false">
-                <argument type="service">
-                  <service class="Symfony\Component\Serializer\Mapping\Loader\LoaderChain" public="false">
-                    <argument type="collection">
-                      <argument type="service">
-                        <service class="Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader" public="false">
-                          <argument type="service" id="annotation_reader"/>
-                        </service>
-                      </argument>
-                    </argument>
-                  </service>
-                </argument>
-                <argument>null</argument>
-              </service>
-            </argument>
-            <argument>null</argument>
-            <argument type="service" id="property_accessor"/>
-            <argument>null</argument>
-          </service>
-        </argument>
-      </argument>
-      <argument type="collection">
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Encoder\YamlEncoder" public="false">
-            <tag name="serializer.encoder"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Encoder\CsvEncoder" public="false">
-            <tag name="serializer.encoder"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Encoder\XmlEncoder" public="false">
-            <tag name="serializer.encoder"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false">
-            <tag name="serializer.encoder"/>
-          </service>
-        </argument>
-      </argument>
-    </service>
     <service id="serializer.mapping.cache.symfony" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
       <argument>/home/habib/working/php/Symfony_Attendance/var/cache/dev/serialization.php</argument>
       <argument type="service" id="cache.serializer"/>
@@ -1850,8 +1886,35 @@
     <service id="security.authentication.manager" class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager" public="false">
       <argument type="collection">
         <argument type="service">
+          <service class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
+            <argument type="service">
+              <service class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false"/>
+            </argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Core\User\UserChecker" public="false"/>
+            </argument>
+            <argument>login</argument>
+            <argument type="service" id="security.encoder_factory"/>
+            <argument>true</argument>
+          </service>
+        </argument>
+        <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5919f0885734f0.68378521</argument>
+            <argument>591a3dd3d1ea05.14735935</argument>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Guard\Provider\GuardAuthenticationProvider" public="false">
+            <argument type="collection">
+              <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+            </argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false"/>
+            </argument>
+            <argument>api</argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Core\User\UserChecker" public="false"/>
+            </argument>
           </service>
         </argument>
       </argument>
@@ -1878,12 +1941,16 @@
     <service id="security.firewall.map" class="Symfony\Bundle\SecurityBundle\Security\FirewallMap" public="false">
       <argument type="service" id="service_container"/>
       <argument type="collection">
-        <argument key="security.firewall.map.context.dev" type="service">
+        <argument key="security.firewall.map.context.login" type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-            <argument>^/(_(profiler|wdt)|css|images|js)/</argument>
+            <argument>^/api/login</argument>
           </service>
         </argument>
-        <argument key="security.firewall.map.context.main">null</argument>
+        <argument key="security.firewall.map.context.api" type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/api</argument>
+          </service>
+        </argument>
       </argument>
     </service>
     <service id="security.logout_url_generator" class="Symfony\Component\Security\Http\Logout\LogoutUrlGenerator" public="false">
@@ -1891,10 +1958,56 @@
       <argument type="service" id="router" on-invalid="null"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
     </service>
+    <service id="security.http_utils" class="Symfony\Component\Security\Http\HttpUtils" public="false">
+      <argument type="service" id="router" on-invalid="null"/>
+      <argument type="service" id="router" on-invalid="null"/>
+    </service>
     <service id="security.validator.user_password" class="Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator">
       <tag name="validator.constraint_validator" alias="security.validator.user_password"/>
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="security.encoder_factory"/>
+    </service>
+    <service id="security.channel_listener" class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="security.access_map"/>
+      <argument type="service">
+        <service class="Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint" public="false">
+          <argument>80</argument>
+          <argument>443</argument>
+        </service>
+      </argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/api/login</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/api</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_FULLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
+    <service id="security.access_listener" class="Symfony\Component\Security\Http\Firewall\AccessListener" public="false">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="debug.security.access.decision_manager"/>
+      <argument type="service" id="security.access_map"/>
+      <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.rememberme.response_listener" class="Symfony\Component\Security\Http\RememberMe\ResponseListener">
       <tag name="kernel.event_subscriber"/>
@@ -1946,108 +2059,153 @@
         </argument>
       </call>
     </service>
-    <service id="security.firewall.map.context.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
-      <argument type="collection"/>
-      <argument>null</argument>
-      <argument type="service">
-        <service class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
-          <argument>dev</argument>
-          <argument>security.user_checker</argument>
-          <argument>security.request_matcher.5314eeb91110adf24b9b678372bb11bbe00e8858c519c088bfb65f525181ad3bf573fd1d</argument>
-          <argument>false</argument>
-          <argument></argument>
-          <argument></argument>
-          <argument></argument>
-          <argument></argument>
-          <argument></argument>
-          <argument></argument>
-          <argument type="collection"/>
-        </service>
-      </argument>
-    </service>
-    <service id="security.firewall.map.context.main" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
+    <service id="security.firewall.map.context.login" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
       <argument type="collection">
+        <argument type="service" id="security.channel_listener"/>
         <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
-            <tag name="monolog.logger" channel="security"/>
+          <service class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener" public="false">
+            <tag name="security.remember_me_aware" id="login" provider="security.user.provider.concrete.in_memory"/>
+            <argument type="service" id="security.token_storage"/>
+            <argument type="service" id="security.authentication.manager"/>
             <argument type="service">
-              <service class="Symfony\Component\Security\Http\AccessMap" public="false"/>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint" public="false">
-                <argument>80</argument>
-                <argument>443</argument>
+              <service class="Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy" public="false">
+                <argument>migrate</argument>
               </service>
             </argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
-            <argument type="service" id="security.token_storage"/>
-            <argument type="collection">
-              <argument type="service">
-                <service class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false"/>
-              </argument>
+            <argument type="service" id="security.http_utils"/>
+            <argument>login</argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Http\Authentication\CustomAuthenticationSuccessHandler" public="false">
+                <argument type="service" id="lexik_jwt_authentication.handler.authentication_success"/>
+                <argument type="collection">
+                  <argument key="always_use_default_target_path">false</argument>
+                  <argument key="default_target_path">/</argument>
+                  <argument key="login_path">/login</argument>
+                  <argument key="target_path_parameter">_target_path</argument>
+                  <argument key="use_referer">false</argument>
+                </argument>
+                <argument>login</argument>
+              </service>
             </argument>
-            <argument>main</argument>
+            <argument type="service">
+              <service class="Symfony\Component\Security\Http\Authentication\CustomAuthenticationFailureHandler" public="false">
+                <argument type="service" id="lexik_jwt_authentication.handler.authentication_failure"/>
+                <argument type="collection">
+                  <argument key="login_path">/login</argument>
+                  <argument key="failure_path">null</argument>
+                  <argument key="failure_forward">false</argument>
+                  <argument key="failure_path_parameter">_failure_path</argument>
+                </argument>
+              </service>
+            </argument>
+            <argument type="collection">
+              <argument key="check_path">/api/login_check</argument>
+              <argument key="require_previous_session">false</argument>
+              <argument key="use_forward">false</argument>
+              <argument key="username_parameter">_username</argument>
+              <argument key="password_parameter">_password</argument>
+              <argument key="csrf_parameter">_csrf_token</argument>
+              <argument key="csrf_token_id">authenticate</argument>
+              <argument key="post_only">true</argument>
+            </argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
-            <argument type="service" id="security.authentication.trust_resolver"/>
+            <argument>null</argument>
           </service>
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5919f0885734f0.68378521</argument>
+            <argument>591a3dd3d1ea05.14735935</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
         </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\AccessListener" public="false">
-            <tag name="monolog.logger" channel="security"/>
-            <argument type="service" id="security.token_storage"/>
-            <argument type="service" id="debug.security.access.decision_manager"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\AccessMap" public="false"/>
-            </argument>
-            <argument type="service" id="security.authentication.manager"/>
-          </service>
-        </argument>
+        <argument type="service" id="security.access_listener"/>
       </argument>
       <argument type="service">
         <service class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
           <argument type="service" id="security.token_storage"/>
           <argument type="service" id="security.authentication.trust_resolver"/>
+          <argument type="service" id="security.http_utils"/>
+          <argument>login</argument>
           <argument type="service">
-            <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-              <argument type="service" id="router" on-invalid="null"/>
-              <argument type="service" id="router" on-invalid="null"/>
+            <service class="Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint" public="false">
+              <argument type="service" id="http_kernel"/>
+              <argument type="service" id="security.http_utils"/>
+              <argument>/login</argument>
+              <argument>false</argument>
             </service>
           </argument>
-          <argument>main</argument>
-          <argument>null</argument>
           <argument>null</argument>
           <argument>null</argument>
           <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-          <argument>false</argument>
+          <argument>true</argument>
         </service>
       </argument>
       <argument type="service">
         <service class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
-          <argument>main</argument>
+          <argument>login</argument>
           <argument>security.user_checker</argument>
-          <argument>null</argument>
+          <argument>security.request_matcher.0f5b08f651583fd992ff0203b6568f57f72cdce151a9ae850abcdf65ed2efdf00554c442</argument>
           <argument>true</argument>
-          <argument>false</argument>
+          <argument>true</argument>
           <argument>security.user.provider.concrete.in_memory</argument>
-          <argument>main</argument>
           <argument>null</argument>
+          <argument>security.authentication.form_entry_point.login</argument>
           <argument>null</argument>
           <argument>null</argument>
           <argument type="collection">
+            <argument>form_login</argument>
             <argument>anonymous</argument>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="security.firewall.map.context.api" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
+      <argument type="collection">
+        <argument type="service" id="security.channel_listener"/>
+        <argument type="service">
+          <service class="Symfony\Component\Security\Guard\Firewall\GuardAuthenticationListener" public="false">
+            <tag name="security.remember_me_aware" id="api" provider="security.user.provider.concrete.in_memory"/>
+            <argument type="service" id="security.authentication.guard_handler"/>
+            <argument type="service" id="security.authentication.manager"/>
+            <argument>api</argument>
+            <argument type="collection">
+              <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+            </argument>
+            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+          </service>
+        </argument>
+        <argument type="service" id="security.access_listener"/>
+      </argument>
+      <argument type="service">
+        <service class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
+          <argument type="service" id="security.token_storage"/>
+          <argument type="service" id="security.authentication.trust_resolver"/>
+          <argument type="service" id="security.http_utils"/>
+          <argument>api</argument>
+          <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+          <argument>null</argument>
+          <argument>null</argument>
+          <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+          <argument>true</argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
+          <argument>api</argument>
+          <argument>security.user_checker</argument>
+          <argument>security.request_matcher.83414b4f59ab53f8865b08d5074e037efbb06e57ccba58ede5e1ed417a9ddcd1b645c11b</argument>
+          <argument>true</argument>
+          <argument>true</argument>
+          <argument>security.user.provider.concrete.in_memory</argument>
+          <argument>null</argument>
+          <argument>lexik_jwt_authentication.jwt_token_authenticator</argument>
+          <argument>null</argument>
+          <argument>null</argument>
+          <argument type="collection">
+            <argument>guard</argument>
           </argument>
         </service>
       </argument>
@@ -2201,6 +2359,13 @@
       </call>
       <call method="addExtension">
         <argument type="service">
+          <service class="JMS\Serializer\Twig\SerializerRuntimeExtension" public="false">
+            <tag name="twig.extension"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
           <service class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
             <tag name="twig.extension"/>
             <argument type="service" id="var_dumper.cloner"/>
@@ -2265,6 +2430,7 @@
             <argument type="collection">
               <argument key="Symfony\Bridge\Twig\Extension\HttpKernelRuntime">twig.runtime.httpkernel</argument>
               <argument key="Symfony\Bridge\Twig\Form\TwigRenderer">twig.form.renderer</argument>
+              <argument key="JMS\Serializer\Twig\SerializerRuntimeHelper">jms_serializer.twig_extension.serializer_runtime_helper</argument>
             </argument>
             <argument type="service" id="logger" on-invalid="null"/>
           </service>
@@ -2646,7 +2812,7 @@
       <call method="add">
         <argument type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-            <argument>^/api</argument>
+            <argument>^/</argument>
             <argument>null</argument>
             <argument>null</argument>
             <argument>null</argument>
@@ -2664,6 +2830,183 @@
           <argument key="stop">false</argument>
         </argument>
       </call>
+    </service>
+    <service id="fos_rest.param_fetcher_listener" class="FOS\RestBundle\EventListener\ParamFetcherListener">
+      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="5"/>
+      <argument type="service" id="fos_rest.request.param_fetcher"/>
+      <argument>false</argument>
+    </service>
+    <service id="jms_serializer.doctrine_proxy_subscriber" class="JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber">
+      <tag name="jms_serializer.event_subscriber"/>
+      <argument>false</argument>
+      <argument>true</argument>
+    </service>
+    <service id="jms_serializer.stopwatch_subscriber" class="JMS\SerializerBundle\Serializer\StopwatchEventSubscriber">
+      <tag name="jms_serializer.event_subscriber"/>
+      <argument type="service" id="debug.stopwatch"/>
+    </service>
+    <service id="jms_serializer.handler_registry" class="FOS\RestBundle\Serializer\JMSHandlerRegistry">
+      <argument type="service" id="fos_rest.serializer.jms_handler_registry"/>
+    </service>
+    <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument>Y-m-d\TH:i:sO</argument>
+      <argument>Europe/Helsinki</argument>
+      <argument>true</argument>
+    </service>
+    <service id="jms_serializer.array_collection_handler" class="JMS\Serializer\Handler\ArrayCollectionHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument>true</argument>
+    </service>
+    <service id="jms_serializer.php_collection_handler" class="JMS\Serializer\Handler\PhpCollectionHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.form_error_handler" class="JMS\Serializer\Handler\FormErrorHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="jms_serializer.constraint_violation_handler" class="JMS\Serializer\Handler\ConstraintViolationHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.unserialize_object_constructor" class="JMS\Serializer\Construction\UnserializeObjectConstructor" public="false"/>
+    <service id="jms_serializer.expression_evaluator" class="JMS\Serializer\Expression\ExpressionEvaluator">
+      <argument type="service">
+        <service class="Symfony\Component\ExpressionLanguage\ExpressionLanguage" public="false">
+          <call method="registerProvider">
+            <argument type="service">
+              <service class="JMS\SerializerBundle\ExpressionLanguage\BasicSerializerFunctionsProvider" public="false"/>
+            </argument>
+          </call>
+        </service>
+      </argument>
+      <argument type="collection">
+        <argument key="container" type="service" id="service_container"/>
+      </argument>
+    </service>
+    <service id="jms_serializer.twig_extension.serializer_runtime_helper" class="JMS\Serializer\Twig\SerializerRuntimeHelper">
+      <tag name="twig.runtime"/>
+      <argument type="service" id="jms_serializer"/>
+    </service>
+    <service id="jms_serializer.templating.helper.serializer" class="JMS\SerializerBundle\Templating\SerializerHelper">
+      <tag name="templating.helper" alias="jms_serializer"/>
+      <argument type="service" id="jms_serializer"/>
+    </service>
+    <service id="jms_serializer.json_serialization_visitor" class="JMS\Serializer\JsonSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="json"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.accessor_strategy"/>
+      <call method="setOptions">
+        <argument>0</argument>
+      </call>
+    </service>
+    <service id="jms_serializer.json_deserialization_visitor" class="JMS\Serializer\JsonDeserializationVisitor">
+      <tag name="jms_serializer.deserialization_visitor" format="json"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+    </service>
+    <service id="jms_serializer.xml_serialization_visitor" class="JMS\Serializer\XmlSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="xml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.accessor_strategy"/>
+      <call method="setFormatOutput">
+        <argument>true</argument>
+      </call>
+    </service>
+    <service id="jms_serializer.xml_deserialization_visitor" class="JMS\Serializer\XmlDeserializationVisitor">
+      <tag name="jms_serializer.deserialization_visitor" format="xml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <call method="setDoctypeWhitelist">
+        <argument type="collection"/>
+      </call>
+    </service>
+    <service id="jms_serializer.yaml_serialization_visitor" class="JMS\Serializer\YamlSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="yml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.accessor_strategy"/>
+    </service>
+    <service id="nelmio_cors.cors_listener" class="Nelmio\CorsBundle\EventListener\CorsListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="250"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service">
+        <service class="Nelmio\CorsBundle\Options\Resolver" public="false">
+          <argument type="collection">
+            <argument type="service" id="nelmio_cors.options_provider.config"/>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="nelmio_cors.options_provider.config" class="Nelmio\CorsBundle\Options\ConfigProvider">
+      <tag name="nelmio_cors.options_provider" priority="-1"/>
+      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="allow_origin">true</argument>
+        <argument key="allow_credentials">false</argument>
+        <argument key="allow_headers">true</argument>
+        <argument key="expose_headers" type="collection"/>
+        <argument key="allow_methods" type="collection">
+          <argument>GET</argument>
+          <argument>POST</argument>
+          <argument>PUT</argument>
+          <argument>DELETE</argument>
+          <argument>OPTIONS</argument>
+        </argument>
+        <argument key="max_age">3600</argument>
+        <argument key="hosts" type="collection"/>
+        <argument key="origin_regex">false</argument>
+        <argument key="forced_allow_origin_value">null</argument>
+      </argument>
+    </service>
+    <service id="lexik_jwt_authentication.encoder.default" class="Lexik\Bundle\JWTAuthenticationBundle\Encoder\DefaultEncoder">
+      <argument type="service" id="lexik\bundle\jwtauthenticationbundle\services\jwsprovider\jwsproviderinterface"/>
+      <autowiring-type>Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface</autowiring-type>
+    </service>
+    <service id="lexik_jwt_authentication.encoder.lcobucci" class="Lexik\Bundle\JWTAuthenticationBundle\Encoder\DefaultEncoder">
+      <argument type="service">
+        <service class="Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\LcobucciJWSProvider" public="false">
+          <argument type="service">
+            <service class="Lexik\Bundle\JWTAuthenticationBundle\Services\KeyLoader\RawKeyLoader" public="false">
+              <argument>/home/habib/working/php/Symfony_Attendance/app/../var/jwt/private.pem</argument>
+              <argument>/home/habib/working/php/Symfony_Attendance/app/../var/jwt/public.pem</argument>
+              <argument></argument>
+            </service>
+          </argument>
+          <argument>openssl</argument>
+          <argument>RS256</argument>
+          <argument>3600</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="lexik_jwt_authentication.jwt_manager" class="Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager">
+      <argument type="service" id="lexik_jwt_authentication.encoder.default"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setUserIdentityField">
+        <argument>username</argument>
+      </call>
+      <autowiring-type>Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface</autowiring-type>
+      <autowiring-type>Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManagerInterface</autowiring-type>
+    </service>
+    <service id="lexik_jwt_authentication.security.guard.jwt_token_authenticator" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Guard\JWTTokenAuthenticator">
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="lexik\bundle\jwtauthenticationbundle\tokenextractor\tokenextractorinterface"/>
+    </service>
+    <service id="lexik_jwt_authentication.handler.authentication_success" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationSuccessHandler">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="lexik_jwt_authentication.handler.authentication_failure" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationFailureHandler">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.authorization_header_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor">
+      <argument>Bearer</argument>
+      <argument>Authorization</argument>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.query_parameter_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\QueryParameterTokenExtractor">
+      <argument></argument>
+    </service>
+    <service id="lexik_jwt_authentication.extractor.cookie_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\CookieTokenExtractor">
+      <argument></argument>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
@@ -3072,6 +3415,234 @@
       </call>
     </service>
     <service id="fos_rest.inflector" class="FOS\RestBundle\Inflector\DoctrineInflector"/>
+    <service id="jms_serializer.metadata_driver" class="JMS\Serializer\Metadata\Driver\DoctrineTypeDriver">
+      <argument type="service">
+        <service class="Metadata\Driver\DriverChain" public="false">
+          <argument type="collection">
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\YamlDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/swiftmailer-bundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/home/habib/working/php/Symfony_Attendance/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
+                      <argument key="AppBundle">/home/habib/working/php/Symfony_Attendance/src/AppBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/home/habib/working/php/Symfony_Attendance/vendor/friendsofsymfony/rest-bundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/home/habib/working/php/Symfony_Attendance/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/home/habib/working/php/Symfony_Attendance/vendor/nelmio/cors-bundle/Resources/config/serializer</argument>
+                      <argument key="Lexik\Bundle\JWTAuthenticationBundle">/home/habib/working/php/Symfony_Attendance/vendor/lexik/jwt-authentication-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\DebugBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/distribution-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/generator-bundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\XmlDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/swiftmailer-bundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/home/habib/working/php/Symfony_Attendance/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
+                      <argument key="AppBundle">/home/habib/working/php/Symfony_Attendance/src/AppBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/home/habib/working/php/Symfony_Attendance/vendor/friendsofsymfony/rest-bundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/home/habib/working/php/Symfony_Attendance/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/home/habib/working/php/Symfony_Attendance/vendor/nelmio/cors-bundle/Resources/config/serializer</argument>
+                      <argument key="Lexik\Bundle\JWTAuthenticationBundle">/home/habib/working/php/Symfony_Attendance/vendor/lexik/jwt-authentication-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\DebugBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/distribution-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/generator-bundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\PhpDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/swiftmailer-bundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/home/habib/working/php/Symfony_Attendance/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
+                      <argument key="AppBundle">/home/habib/working/php/Symfony_Attendance/src/AppBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/home/habib/working/php/Symfony_Attendance/vendor/friendsofsymfony/rest-bundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/home/habib/working/php/Symfony_Attendance/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/home/habib/working/php/Symfony_Attendance/vendor/nelmio/cors-bundle/Resources/config/serializer</argument>
+                      <argument key="Lexik\Bundle\JWTAuthenticationBundle">/home/habib/working/php/Symfony_Attendance/vendor/lexik/jwt-authentication-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\DebugBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/distribution-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/home/habib/working/php/Symfony_Attendance/vendor/sensio/generator-bundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\AnnotationDriver" public="false">
+                <argument type="service" id="annotation_reader"/>
+              </service>
+            </argument>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="jms_serializer.naming_strategy" class="JMS\Serializer\Naming\CacheNamingStrategy">
+      <argument type="service">
+        <service class="JMS\Serializer\Naming\SerializedNameAnnotationStrategy" public="false">
+          <argument type="service">
+            <service class="JMS\Serializer\Naming\CamelCaseNamingStrategy" public="false">
+              <argument>_</argument>
+              <argument>true</argument>
+            </service>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="jms_serializer.object_constructor" class="JMS\Serializer\Construction\DoctrineObjectConstructor">
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+      <argument type="string">null</argument>
+    </service>
+    <service id="jms_serializer.deserialization_context_factory" class="JMS\SerializerBundle\ContextFactory\ConfiguredContextFactory"/>
+    <service id="jms_serializer.serialization_context_factory" class="JMS\SerializerBundle\ContextFactory\ConfiguredContextFactory"/>
+    <service id="jms_serializer" class="JMS\Serializer\Serializer">
+      <argument type="service">
+        <service class="Metadata\MetadataFactory" public="false">
+          <argument type="service">
+            <service class="Metadata\Driver\LazyLoadingDriver" public="false">
+              <argument type="service" id="service_container"/>
+              <argument>jms_serializer.metadata_driver</argument>
+            </service>
+          </argument>
+          <argument>Metadata\ClassHierarchyMetadata</argument>
+          <argument>true</argument>
+          <call method="setCache">
+            <argument type="service">
+              <service class="Metadata\Cache\FileCache" public="false">
+                <argument>/home/habib/working/php/Symfony_Attendance/var/cache/dev/jms_serializer</argument>
+              </service>
+            </argument>
+          </call>
+        </service>
+      </argument>
+      <argument type="service" id="jms_serializer.handler_registry"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+      <argument type="service">
+        <service class="PhpCollection\Map">
+          <argument type="collection">
+            <argument key="json" type="service" id="jms_serializer.json_serialization_visitor"/>
+            <argument key="xml" type="service" id="jms_serializer.xml_serialization_visitor"/>
+            <argument key="yml" type="service" id="jms_serializer.yaml_serialization_visitor"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="PhpCollection\Map">
+          <argument type="collection">
+            <argument key="json" type="service" id="jms_serializer.json_deserialization_visitor"/>
+            <argument key="xml" type="service" id="jms_serializer.xml_deserialization_visitor"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="JMS\Serializer\EventDispatcher\LazyEventDispatcher" public="false">
+          <argument type="service" id="service_container"/>
+          <call method="setListeners">
+            <argument type="collection">
+              <argument key="serializer.pre_serialize" type="collection">
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.stopwatch_subscriber</argument>
+                    <argument>onPreSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.doctrine_proxy_subscriber</argument>
+                    <argument>onPreSerializeTypedProxy</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.doctrine_proxy_subscriber</argument>
+                    <argument>onPreSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+              </argument>
+              <argument key="serializer.post_serialize" type="collection">
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.stopwatch_subscriber</argument>
+                    <argument>onPostSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+              </argument>
+            </argument>
+          </call>
+        </service>
+      </argument>
+      <argument>null</argument>
+      <argument type="service" id="jms_serializer.expression_evaluator"/>
+      <call method="setSerializationContextFactory">
+        <argument type="service" id="jms_serializer.serialization_context_factory"/>
+      </call>
+      <call method="setDeserializationContextFactory">
+        <argument type="service" id="jms_serializer.deserialization_context_factory"/>
+      </call>
+    </service>
+    <service id="jms_serializer.accessor_strategy" class="JMS\Serializer\Accessor\ExpressionAccessorStrategy">
+      <argument type="service" id="jms_serializer.expression_evaluator"/>
+      <argument type="service">
+        <service class="JMS\Serializer\Accessor\DefaultAccessorStrategy" public="false"/>
+      </argument>
+    </service>
+    <service id="lexik\bundle\jwtauthenticationbundle\services\jwsprovider\jwsproviderinterface" class="Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\DefaultJWSProvider">
+      <argument type="service" id="lexik_jwt_authentication.key_loader"/>
+      <argument>openssl</argument>
+      <argument>RS256</argument>
+      <argument>3600</argument>
+      <autowiring-type>Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface</autowiring-type>
+    </service>
+    <service id="lexik\bundle\jwtauthenticationbundle\tokenextractor\tokenextractorinterface" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\ChainTokenExtractor">
+      <argument type="collection">
+        <argument type="service" id="lexik_jwt_authentication.extractor.authorization_header_extractor"/>
+      </argument>
+      <autowiring-type>Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\TokenExtractorInterface</autowiring-type>
+    </service>
+    <service id="lexik_jwt_authentication.key_loader" class="Lexik\Bundle\JWTAuthenticationBundle\Services\KeyLoader\OpenSSLKeyLoader">
+      <argument>/home/habib/working/php/Symfony_Attendance/app/../var/jwt/private.pem</argument>
+      <argument>/home/habib/working/php/Symfony_Attendance/app/../var/jwt/public.pem</argument>
+      <argument></argument>
+    </service>
     <service id="twig.loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
       <tag name="twig.loader"/>
       <argument type="service" id="templating.locator"/>
@@ -3112,8 +3683,353 @@
         <argument>/home/habib/working/php/Symfony_Attendance/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form</argument>
       </call>
     </service>
-    <service id="fos_rest.serializer" class="FOS\RestBundle\Serializer\SymfonySerializerAdapter" lazy="true">
-      <argument type="service" id="serializer"/>
+    <service id="fos_rest.serializer" class="FOS\RestBundle\Serializer\JMSSerializerAdapter" lazy="true">
+      <argument type="service" id="jms_serializer"/>
+    </service>
+    <service id="fos_rest.serializer.jms_handler_registry" class="JMS\Serializer\Handler\LazyHandlerRegistry" public="false">
+      <argument type="service" id="service_container"/>
+      <argument type="collection">
+        <argument key="2" type="collection">
+          <argument key="DateTime" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromjson</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromxml</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromyml</argument>
+            </argument>
+          </argument>
+          <argument key="DateTimeImmutable" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeImmutableFromjson</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeImmutableFromxml</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeImmutableFromyml</argument>
+            </argument>
+          </argument>
+          <argument key="DateInterval" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateIntervalFromjson</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateIntervalFromxml</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateIntervalFromyml</argument>
+            </argument>
+          </argument>
+          <argument key="ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\Common\Collections\ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ORM\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\MongoDB\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\PHPCR\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Sequence" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Map" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+          </argument>
+        </argument>
+        <argument key="1" type="collection">
+          <argument key="DateTime" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+          </argument>
+          <argument key="DateTimeImmutable" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTimeImmutable</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTimeImmutable</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTimeImmutable</argument>
+            </argument>
+          </argument>
+          <argument key="DateInterval" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+          </argument>
+          <argument key="ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\Common\Collections\ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ORM\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\MongoDB\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\PHPCR\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Sequence" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Map" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Form\Form" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Form\FormError" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Validator\ConstraintViolationList" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Validator\ConstraintViolation" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationToyml</argument>
+            </argument>
+          </argument>
+        </argument>
+      </argument>
     </service>
     <service id="cache.app_clearer" alias="cache.default_clearer"/>
     <service id="session.storage" alias="session.storage.native"/>
@@ -3131,6 +4047,14 @@
     <service id="doctrine.orm.default_query_cache" alias="doctrine_cache.providers.doctrine.orm.default_query_cache"/>
     <service id="fos_rest.router" alias="router"/>
     <service id="fos_rest.templating" alias="templating"/>
+    <service id="jms\serializer\serializerinterface" alias="jms_serializer"/>
+    <service id="jms\serializer\arraytransformerinterface" alias="jms_serializer"/>
+    <service id="serializer" alias="jms_serializer"/>
+    <service id="lexik_jwt_authentication.jwt_token_authenticator" alias="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+    <service id="lexik\bundle\jwtauthenticationbundle\services\jwttokenmanagerinterface" alias="lexik_jwt_authentication.jwt_manager"/>
+    <service id="lexik\bundle\jwtauthenticationbundle\services\jwttokeninterface" alias="lexik_jwt_authentication.jwt_manager"/>
+    <service id="lexik_jwt_authentication.encoder" alias="lexik_jwt_authentication.encoder.default"/>
+    <service id="lexik\bundle\jwtauthenticationbundle\encoder\jwtencoderinterface" alias="lexik_jwt_authentication.encoder.default"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
   </services>
 </container>

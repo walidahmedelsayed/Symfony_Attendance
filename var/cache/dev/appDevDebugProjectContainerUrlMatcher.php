@@ -114,16 +114,21 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        // api_articles_get_article
-        if (0 === strpos($pathinfo, '/api/articles') && preg_match('#^/api/articles/(?P<id>[^/\\.]++)(?:\\.(?P<_format>json|html))?$#s', $pathinfo, $matches)) {
+        // app_user_get
+        if ($pathinfo === '/user') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_api_articles_get_article;
+                goto not_app_user_get;
             }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'api_articles_get_article')), array (  '_controller' => 'AppBundle\\Controller\\ArticlesController::getArticleAction',  '_format' => NULL,));
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::getAction',  '_route' => 'app_user_get',);
         }
-        not_api_articles_get_article:
+        not_app_user_get:
+
+        // api_login_check
+        if ($pathinfo === '/api/login_check') {
+            return array('_route' => 'api_login_check');
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
