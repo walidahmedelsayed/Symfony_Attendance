@@ -36,11 +36,11 @@ class StudentsAttendanceController extends FOSRestController
         $data = new StudentAttendance();
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
         $attendanceRecord = $this->getDoctrine()->getRepository('AppBundle:Attendance')->find($request->get('attendance_id'));
-        $attendanceTime=$attendanceRecord->getDate();
+        $attendanceTime = $attendanceRecord->getDate();
         $arrivalTime = new \DateTime('now');
         $minLate = $attendanceTime->diff($arrivalTime)->format('%i');
-        $rule =  $this->getDoctrine()->getRepository('AppBundle:Rule')->find(1);
-        $marksDeduct = ($minLate/$rule->getMinutes())*$rule->getMarks();
+        $rule = $this->getDoctrine()->getRepository('AppBundle:Rule')->find(1);
+        $marksDeduct = ($minLate / $rule->getMinutes()) * $rule->getMarks();
         if (empty($user)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
