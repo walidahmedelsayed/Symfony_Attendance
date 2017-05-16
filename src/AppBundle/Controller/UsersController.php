@@ -26,7 +26,7 @@ class UsersController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/api/users/{id}")
+     * @Rest\Get("/users/{id}")
      */
     public function getUserAction($id)
     {
