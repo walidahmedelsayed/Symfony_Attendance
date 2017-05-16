@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * User
  *
@@ -48,7 +49,6 @@ class User
      */
     private $track;
 
-    
 
     /**
      * @ORM\OneToMany(targetEntity="Request", mappedBy="user")
@@ -60,7 +60,8 @@ class User
      * */
     protected $studentAttendance;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->requests = new ArrayCollection();
         $this->studentAttendance = new ArrayCollection();
     }

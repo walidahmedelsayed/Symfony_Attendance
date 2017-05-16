@@ -29,7 +29,6 @@ class Branch
     private $name;
 
 
-
     /**
      * @ORM\OneToMany(targetEntity="Track", mappedBy="branch")
      */

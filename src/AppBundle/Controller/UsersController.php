@@ -1,5 +1,6 @@
 <?php
 namespace AppBundle\Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -48,8 +49,7 @@ class UsersController extends FOSRestController
         $password = $request->get('password');
         $track = $this->getDoctrine()->getRepository('AppBundle:Track')->find($request->get('track_id'));
         $type = $request->get('type');
-        if(empty($name) || empty($password)|| empty($track) || empty($type) )
-        {
+        if (empty($name) || empty($password) || empty($track) || empty($type)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
         $data->setName($name);
@@ -65,7 +65,7 @@ class UsersController extends FOSRestController
     /**
      * @Rest\Put("/users/{id}")
      */
-    public function updateAction($id,Request $request)
+    public function updateAction($id, Request $request)
     {
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
         $name = $request->get('name');
@@ -106,8 +106,7 @@ class UsersController extends FOSRestController
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
         if (empty($user)) {
             return new View("user not found", Response::HTTP_NOT_FOUND);
-        }
-        else {
+        } else {
             $sn->remove($user);
             $sn->flush();
         }
