@@ -4,3 +4,9 @@
 0be5d1,127.0.0.1,POST,http://localhost:8000/api/login_check,1494892918,,401
 3528a1,127.0.0.1,POST,http://localhost:8000/api/login_check,1494892926,,401
 98ef2c,127.0.0.1,POST,http://localhost:8000/api/login_check,1494892952,,401
+55acdf,127.0.0.1,GET,http://localhost:8000/,1494927584,,200
+19193e,127.0.0.1,GET,http://localhost:8000/user,1494927597,,200
+33050c,127.0.0.1,GET,http://localhost:8000/users,1494927688,,200
+187e83,127.0.0.1,GET,http://localhost:8000/users/4,1494927709,753d92,200
+753d92,127.0.0.1,GET,http://localhost:8000/users/4,1494927709,,405
+aa3743,127.0.0.1,GET,http://localhost:8000/api/users/4,1494927745,,401

@@ -114,16 +114,77 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        // app_user_get
-        if ($pathinfo === '/user') {
+        if (0 === strpos($pathinfo, '/user')) {
+            // app_user_get
+            if ($pathinfo === '/user') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_app_user_get;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\UserController::getAction',  '_route' => 'app_user_get',);
+            }
+            not_app_user_get:
+
+            // app_users_get
+            if ($pathinfo === '/users') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_app_users_get;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\UsersController::getAction',  '_route' => 'app_users_get',);
+            }
+            not_app_users_get:
+
+        }
+
+        // app_users_getuser
+        if (0 === strpos($pathinfo, '/api/users') && preg_match('#^/api/users/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_app_user_get;
+                goto not_app_users_getuser;
             }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\UserController::getAction',  '_route' => 'app_user_get',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_users_getuser')), array (  '_controller' => 'AppBundle\\Controller\\UsersController::getUserAction',));
         }
-        not_app_user_get:
+        not_app_users_getuser:
+
+        if (0 === strpos($pathinfo, '/users')) {
+            // app_users_post
+            if ($pathinfo === '/users') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_app_users_post;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\UsersController::postAction',  '_route' => 'app_users_post',);
+            }
+            not_app_users_post:
+
+            // app_users_update
+            if (preg_match('#^/users/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_app_users_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_users_update')), array (  '_controller' => 'AppBundle\\Controller\\UsersController::updateAction',));
+            }
+            not_app_users_update:
+
+            // app_users_delete
+            if (preg_match('#^/users/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_app_users_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_users_delete')), array (  '_controller' => 'AppBundle\\Controller\\UsersController::deleteAction',));
+            }
+            not_app_users_delete:
+
+        }
 
         // api_login_check
         if ($pathinfo === '/api/login_check') {
