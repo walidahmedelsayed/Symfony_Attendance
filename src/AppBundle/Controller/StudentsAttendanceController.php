@@ -29,6 +29,21 @@ class StudentsAttendanceController extends FOSRestController
     }
 
     /**
+     * @Rest\Get("/studentsAttendance/{id}")
+     */
+    public function getStudentDetailsAction($id)
+    {
+
+        $restresult = $this->getDoctrine()->getRepository('AppBundle:StudentAttendance')->findByUser($id);
+        if ($restresult === null) {
+            return new View("record not found", Response::HTTP_NOT_FOUND);
+        }
+        return $restresult;
+
+    }
+
+
+    /**
      * @Rest\Post("/studentsAttendance")
      */
     public function postAction(Request $request)
