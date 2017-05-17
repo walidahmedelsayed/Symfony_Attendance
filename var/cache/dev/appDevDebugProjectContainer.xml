@@ -112,8 +112,8 @@
     <parameter key="database_host">127.0.0.1</parameter>
     <parameter key="database_port">null</parameter>
     <parameter key="database_name">symfony</parameter>
-    <parameter key="database_user">walid</parameter>
-    <parameter key="database_password">walid</parameter>
+    <parameter key="database_user">root</parameter>
+    <parameter key="database_password">123321123</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -564,7 +564,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>gjGmHektyT</argument>
                 <argument>0</argument>
-                <argument>XRrRLG44nSMrU3ONy7R38u</argument>
+                <argument>IAIoHGASzDajgFaXS8cjpw</argument>
                 <argument>/home/walid/Desktop/ITI/Symfony/Symfony_Attendance/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -761,7 +761,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>Xo6itd1hvh</argument>
       <argument>0</argument>
-      <argument>XRrRLG44nSMrU3ONy7R38u</argument>
+      <argument>IAIoHGASzDajgFaXS8cjpw</argument>
       <argument>/home/walid/Desktop/ITI/Symfony/Symfony_Attendance/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -771,7 +771,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>LV4P-2mQXy</argument>
       <argument>0</argument>
-      <argument>XRrRLG44nSMrU3ONy7R38u</argument>
+      <argument>IAIoHGASzDajgFaXS8cjpw</argument>
       <argument>/home/walid/Desktop/ITI/Symfony/Symfony_Attendance/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -781,7 +781,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>acND3Ec9fJ</argument>
       <argument>0</argument>
-      <argument>XRrRLG44nSMrU3ONy7R38u</argument>
+      <argument>IAIoHGASzDajgFaXS8cjpw</argument>
       <argument>/home/walid/Desktop/ITI/Symfony/Symfony_Attendance/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -2483,8 +2483,8 @@
         <argument key="host">127.0.0.1</argument>
         <argument key="port">null</argument>
         <argument key="dbname">symfony</argument>
-        <argument key="user">walid</argument>
-        <argument key="password">walid</argument>
+        <argument key="user">root</argument>
+        <argument key="password">123321123</argument>
         <argument key="charset">utf8mb4</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection">

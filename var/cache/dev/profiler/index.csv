@@ -1,0 +1,8 @@
+157304,127.0.0.1,GET,http://localhost:8000/users,1495058772,41e94e,200
+41e94e,127.0.0.1,GET,http://localhost:8000/users,1495058772,,404
+51f2e3,127.0.0.1,GET,http://localhost:8000/api/users,1495058778,,401
+5db1e6,127.0.0.1,GET,http://localhost:8000/,1495059221,0a2057,200
+0a2057,127.0.0.1,GET,http://localhost:8000/,1495059221,,404
+a3ee24,127.0.0.1,GET,http://localhost:8000/users,1495059226,4a3210,200
+4a3210,127.0.0.1,GET,http://localhost:8000/users,1495059226,,404
+b7be1c,127.0.0.1,GET,http://localhost:8000/api/users,1495059232,,401
