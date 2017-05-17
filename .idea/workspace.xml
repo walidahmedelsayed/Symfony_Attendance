@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e154c99-1f24-4b59-ad7a-c8434e2449d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/parameters_prod.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/composer.phar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Symfony_Attendance.iml" afterPath="$PROJECT_DIR$/.idea/Symfony_Attendance.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config_dev.yml" afterPath="$PROJECT_DIR$/app/config/config_dev.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config_prod.yml" afterPath="$PROJECT_DIR$/app/config/config_prod.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/StudentsAttendanceController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/StudentsAttendanceController.php" />
-    </list>
+    <list default="true" id="0e154c99-1f24-4b59-ad7a-c8434e2449d4" name="Default" comment="" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -347,12 +336,20 @@
       <workItem from="1494932784657" duration="915000" />
       <workItem from="1494943128023" duration="22429000" />
       <workItem from="1495009870812" duration="4260000" />
-      <workItem from="1495016919274" duration="208000" />
+      <workItem from="1495016919274" duration="318000" />
     </task>
+    <task id="LOCAL-00001" summary="deploy test">
+      <created>1495017165092</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1495017165092</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53911000" />
+    <option name="totallyTimeSpent" value="54021000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="701" extended-state="6" />
@@ -390,6 +387,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="deploy test" />
+    <option name="LAST_COMMIT_MESSAGE" value="deploy test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -662,7 +663,7 @@
         <state relative-caret-position="360">
           <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
           <folding>
-            <element signature="e#40#90#0#PHP" expanded="true" />
+            <element signature="e#40#90#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
