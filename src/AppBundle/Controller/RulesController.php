@@ -10,11 +10,11 @@ use FOS\RestBundle\View\View;
 use AppBundle\Entity\Rule;
 
 
-class RuleController extends FOSRestController
+class RulesController extends FOSRestController
 {
 
     /**
-     * @Rest\Get("/api/rule")
+     * @Rest\Get("/api/rules")
      */
     public function getAction()
     {
@@ -29,7 +29,7 @@ class RuleController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/api/rule/{id}")
+     * @Rest\Get("/api/rules/{id}")
      */
     public function getRuleAction($id)
     {
@@ -42,7 +42,28 @@ class RuleController extends FOSRestController
 
 
     /**
-     * @Rest\Put("/api/rule/{id}")
+     * @Rest\Post("/api/rules")
+     */
+    public function postAction(Request $request)
+    {
+        $data = new Rule;
+        $marks = $request->get('marks');
+        $minutes = $request->get('minutes');
+        if (empty($marks) || empty($minutes)) {
+            return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
+        }
+        $data->setMarks($marks);
+        $data->setMinutes($minutes);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($data);
+        $em->flush();
+        return new View($data, Response::HTTP_OK);
+    }
+
+
+    /**
+     * @Rest\Put("/api/rules/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -62,5 +83,24 @@ class RuleController extends FOSRestController
             return new View("Rule Updated Successfully", Response::HTTP_OK);
         } else return new View("rule wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
+
+
+    /**
+     * @Rest\Delete("/api/rules/{id}")
+     */
+    public function deleteAction($id)
+    {
+
+        $sn = $this->getDoctrine()->getManager();
+        $request = $this->getDoctrine()->getRepository('AppBundle:Rule')->find($id);
+        if (empty($request)) {
+            return new View("track not found", Response::HTTP_NOT_FOUND);
+        } else {
+            $sn->remove($request);
+            $sn->flush();
+        }
+        return new View("deleted successfully", Response::HTTP_OK);
+    }
+
 
 }
