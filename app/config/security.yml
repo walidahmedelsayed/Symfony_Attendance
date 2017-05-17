@@ -18,6 +18,5 @@ security:
                      - app.jwt_token_authenticator
 
     access_control:
-         - { path: /api/token-authentication, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/api, roles: [ROLE_USER, ROLE_API_USER] }
-         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: /api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/home, roles: [ROLE_USER, ROLE_API_USER] }

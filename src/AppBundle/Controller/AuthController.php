@@ -11,7 +11,7 @@ class AuthController extends FOSRestController
 {
 
     /**
-     * @Rest\Post("/api/token-authentication")
+     * @Rest\Post("/api/login")
      */
     public function tokenAuthentication(Request $request)
     {

@@ -15,7 +15,7 @@ class UserType extends AbstractType
     {
         $builder->add('name')->add('password')->add('type')->add('track');
     }
-    
+
     /**
      * {@inheritdoc}
      */
