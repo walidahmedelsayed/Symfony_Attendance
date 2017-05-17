@@ -30,6 +30,14 @@ class Branch
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="Track", mappedBy="branch")
      */
     private $tracks;
