@@ -3,28 +3,20 @@
 security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+        AppBundle\Entity\User: bcrypt
     providers:
-        in_memory:
-            memory: ~
+        database_users:
+            entity: { class: AppBundle:User, property: email }
 
     firewalls:
-        login:
-            pattern:  ^/api/login
-            stateless: true
-            anonymous: true
-            form_login:
-                check_path:      /api/login_check
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
-                require_previous_session: false
-
-        api:
-            pattern:   ^/api
-            stateless: true
-            guard:
-                authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
+     # Custom authentication firewall for all request thats starts from /api
+         api:
+             pattern: ^/api/(?!token)
+             guard:
+                 authenticators:
+                     - app.jwt_token_authenticator
 
     access_control:
-                - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-                - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/home, roles: [ROLE_USER, ROLE_API_USER] }
