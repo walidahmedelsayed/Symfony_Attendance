@@ -30,7 +30,7 @@ class User implements UserInterface
      */
     private $name;
 
-    
+
 
     /**
      * @var string
@@ -59,10 +59,10 @@ class User implements UserInterface
     private $requests;
 
 
-    /**
-     * @ORM\Column(type="string", unique=true)
-     */
-    private $apiKey;
+    // /**
+    //  * @ORM\Column(type="string", unique=true)
+    //  */
+    // private $apiKey;
 
 
 
