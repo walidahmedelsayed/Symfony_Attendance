@@ -4,13 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -27,6 +29,13 @@ class User
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
     /**
      * @var string
@@ -54,6 +63,14 @@ class User
      * @ORM\OneToMany(targetEntity="Request", mappedBy="user")
      */
     private $requests;
+
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $apiKey;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="StudentAttendance", mappedBy="user", cascade={"all"})
@@ -240,4 +257,26 @@ class User
     {
         return $this->studentAttendance;
     }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        return $this->name;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
 }
