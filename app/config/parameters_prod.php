@@ -14,5 +14,5 @@ $container->setParameter('mailer_user', null);
 $container->setParameter('mailer_password', null);
 $container->setParameter('jwt_private_key_path', '%kernel.root_dir%/../var/jwt/private.pem');
 $container->setParameter('jwt_public_key_path', '%kernel.root_dir%/../var/jwt/public.pem');
-$container->setParameter('jwt_key_pass_phrase', '');
+$container->setParameter('jwt_key_pass_phrase', 'hassan');
 $container->setParameter('jwt_token_ttl', 604800);
