@@ -30,12 +30,12 @@ class User implements UserInterface
      */
     private $name;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="email", type="string", length=255)
+    //  */
+    // private $email;
 
     /**
      * @var string
