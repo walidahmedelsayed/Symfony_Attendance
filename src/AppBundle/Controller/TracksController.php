@@ -66,7 +66,7 @@ class TracksController extends FOSRestController
     {
         $name = $request->get('name');
         $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
-        $track = $this->getDoctrine()->getRepository('AppBundle:Track')->find($request->get($id));
+        $track = $this->getDoctrine()->getRepository('AppBundle:Track')->find($id);
         $sn = $this->getDoctrine()->getManager();
 
         if (empty($track)) {
