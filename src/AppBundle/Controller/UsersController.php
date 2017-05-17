@@ -59,12 +59,8 @@ class UsersController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        $object = new stdClass();
-        $object->id = $data->getId();
-        $object->name = $data->getName();
-        $object->track = $data->getTrack();
-        $object->type = $data->getType();
-        return new View($object, Response::HTTP_OK);
+        
+        return new View($data, Response::HTTP_OK);
     }
 
     /**
