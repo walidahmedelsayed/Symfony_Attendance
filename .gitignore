@@ -1,8 +1,7 @@
 /build/
 /phpunit.xml
-app/config/*
-/var/*
+
+
 /vendor/*
 /web/bundles/
 .idea/*
-composer.lock
