@@ -45,7 +45,7 @@ class BranchesController extends FOSRestController
     public function postAction(Request $request)
     {
         $data = new Branch;
-        $name =  $request->get('name');
+        $name = $request->get('name');
 
         if (empty($name)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
@@ -76,8 +76,7 @@ class BranchesController extends FOSRestController
 
             $sn->flush();
             return new View("Branch Updated Successfully", Response::HTTP_OK);
-        }
-        else return new View("Branch wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
+        } else return new View("Branch wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
     /**

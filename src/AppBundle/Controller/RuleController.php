@@ -60,8 +60,7 @@ class RuleController extends FOSRestController
 
             $sn->flush();
             return new View("Rule Updated Successfully", Response::HTTP_OK);
-        }
-        else return new View("rule wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
+        } else return new View("rule wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
 }

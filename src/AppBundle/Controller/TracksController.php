@@ -44,8 +44,8 @@ class TracksController extends FOSRestController
     public function postAction(Request $request)
     {
         $data = new Track;
-        $name =  $request->get('name');
-        $branch =  $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
+        $name = $request->get('name');
+        $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
         if (empty($name) || empty($branch)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
@@ -65,8 +65,8 @@ class TracksController extends FOSRestController
     public function updateAction($id, Request $request)
     {
         $name = $request->get('name');
-        $branch =  $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
-        $track =  $this->getDoctrine()->getRepository('AppBundle:Track')->find($request->get($id));
+        $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
+        $track = $this->getDoctrine()->getRepository('AppBundle:Track')->find($request->get($id));
         $sn = $this->getDoctrine()->getManager();
 
         if (empty($track)) {
@@ -77,8 +77,7 @@ class TracksController extends FOSRestController
 
             $sn->flush();
             return new View("Track Updated Successfully", Response::HTTP_OK);
-        }
-        else return new View("Track wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
+        } else return new View("Track wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
 

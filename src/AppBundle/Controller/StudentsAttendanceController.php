@@ -38,7 +38,14 @@ class StudentsAttendanceController extends FOSRestController
         $attendanceRecord = $this->getDoctrine()->getRepository('AppBundle:Attendance')->find($request->get('attendance_id'));
         $attendanceTime = $attendanceRecord->getDate();
         $arrivalTime = new \DateTime('now');
-        $minLate = $attendanceTime->diff($arrivalTime)->format('%i');
+        $hourLate = $attendanceTime->diff($arrivalTime)->format('%h');
+        if ($hourLate > 0) {
+            $minLate = ($attendanceTime->diff($arrivalTime)->format('%i')) + ($hourLate * 60);
+        } else {
+            $minLate = $attendanceTime->diff($arrivalTime)->format('%i');
+        }
+
+
         $rule = $this->getDoctrine()->getRepository('AppBundle:Rule')->find(1);
         $marksDeduct = ($minLate / $rule->getMinutes()) * $rule->getMarks();
         if (empty($user)) {

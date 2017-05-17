@@ -44,10 +44,10 @@ class RequestsController extends FOSRestController
     public function postAction(Request $request)
     {
         $data = new myRequest;
-        $body =  $request->get('body');
+        $body = $request->get('body');
         $date = new \DateTime('now');
-        $status = 1 ;
-        $user= $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
+        $status = 1;
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
 
         if (empty($body) || empty($date) || empty($status) || empty($user)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
@@ -79,8 +79,7 @@ class RequestsController extends FOSRestController
 
             $sn->flush();
             return new View("Request Updated Successfully", Response::HTTP_OK);
-        }
-        else return new View("request wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
+        } else return new View("request wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
 
