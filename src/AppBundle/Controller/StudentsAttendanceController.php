@@ -75,6 +75,6 @@ class StudentsAttendanceController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new View("Record Added Successfully", Response::HTTP_OK);
+        return new View($data, Response::HTTP_OK);
     }
 }

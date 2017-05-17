@@ -55,7 +55,7 @@ class TracksController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new View("Track Added Successfully", Response::HTTP_OK);
+        return new View($data, Response::HTTP_OK);
     }
 
 
