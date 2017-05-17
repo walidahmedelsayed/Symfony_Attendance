@@ -78,7 +78,7 @@ class RequestsController extends FOSRestController
             $userrequest->setStatus($status);
 
             $sn->flush();
-            return new View("Request Updated Successfully", Response::HTTP_OK);
+            return new View($userrequest, Response::HTTP_OK);
         } else return new View("request wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 

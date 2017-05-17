@@ -82,15 +82,15 @@ class UsersController extends FOSRestController
             $user->setType($type);
 
             $sn->flush();
-            return new View("User Updated Successfully", Response::HTTP_OK);
+            return new View($user, Response::HTTP_OK);
         } elseif (empty($name) && !empty($password)) {
             $user->setPassword($password);
             $sn->flush();
-            return new View("role Updated Successfully", Response::HTTP_OK);
+            return new View($user, Response::HTTP_OK);
         } elseif (!empty($name) && empty($password)) {
             $user->setName($name);
             $sn->flush();
-            return new View("User Name Updated Successfully", Response::HTTP_OK);
+            return new View($user, Response::HTTP_OK);
         } else return new View("User name or role cannot be empty", Response::HTTP_NOT_ACCEPTABLE);
     }
 

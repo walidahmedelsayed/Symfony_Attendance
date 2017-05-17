@@ -80,7 +80,7 @@ class RulesController extends FOSRestController
             $rule->setMinutes($minutes);
 
             $sn->flush();
-            return new View("Rule Updated Successfully", Response::HTTP_OK);
+            return new View($rule, Response::HTTP_OK);
         } else return new View("rule wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 

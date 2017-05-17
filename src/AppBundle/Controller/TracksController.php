@@ -76,7 +76,7 @@ class TracksController extends FOSRestController
             $track->setBranch($branch);
 
             $sn->flush();
-            return new View("Track Updated Successfully", Response::HTTP_OK);
+            return new View($track, Response::HTTP_OK);
         } else return new View("Track wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
