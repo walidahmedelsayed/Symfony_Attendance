@@ -13,7 +13,7 @@ use AppBundle\Entity\Branch;
 class BranchesController extends FOSRestController
 {
     /**
-     * @Rest\Get("/branches")
+     * @Rest\Get("/api/branches")
      */
     public function getAction()
     {
@@ -28,7 +28,7 @@ class BranchesController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/branches/{id}")
+     * @Rest\Get("/api/branches/{id}")
      */
     public function getBranchAction($id)
     {
@@ -40,7 +40,7 @@ class BranchesController extends FOSRestController
     }
 
     /**
-     * @Rest\Post("/branches")
+     * @Rest\Post("/api/branches")
      */
     public function postAction(Request $request)
     {
@@ -60,7 +60,7 @@ class BranchesController extends FOSRestController
 
 
     /**
-     * @Rest\Put("/branches/{id}")
+     * @Rest\Put("/api/branches/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -80,7 +80,7 @@ class BranchesController extends FOSRestController
     }
 
     /**
-     * @Rest\Delete("/branches/{id}")
+     * @Rest\Delete("/api/branches/{id}")
      */
     public function deleteAction($id)
     {

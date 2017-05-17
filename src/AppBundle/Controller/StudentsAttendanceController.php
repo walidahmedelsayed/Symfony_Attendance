@@ -15,7 +15,7 @@ use AppBundle\Entity\Rule;
 class StudentsAttendanceController extends FOSRestController
 {
     /**
-     * @Rest\Get("/studentsAttendance")
+     * @Rest\Get("/api/studentsAttendance")
      */
     public function getAction()
     {
@@ -29,7 +29,7 @@ class StudentsAttendanceController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/studentsAttendance/{id}")
+     * @Rest\Get("/api/studentsAttendance/{id}")
      */
     public function getStudentDetailsAction($id)
     {
@@ -44,7 +44,7 @@ class StudentsAttendanceController extends FOSRestController
 
 
     /**
-     * @Rest\Post("/studentsAttendance")
+     * @Rest\Post("/api/studentsAttendance")
      */
     public function postAction(Request $request)
     {

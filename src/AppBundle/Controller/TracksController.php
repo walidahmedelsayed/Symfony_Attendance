@@ -12,7 +12,7 @@ use AppBundle\Entity\Track;
 class TracksController extends FOSRestController
 {
     /**
-     * @Rest\Get("/tracks")
+     * @Rest\Get("/api/tracks")
      */
     public function getAction()
     {
@@ -27,7 +27,7 @@ class TracksController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/tracks/{id}")
+     * @Rest\Get("/api/tracks/{id}")
      */
     public function getTrackAction($id)
     {
@@ -39,7 +39,7 @@ class TracksController extends FOSRestController
     }
 
     /**
-     * @Rest\Post("/tracks")
+     * @Rest\Post("/api/tracks")
      */
     public function postAction(Request $request)
     {
@@ -60,7 +60,7 @@ class TracksController extends FOSRestController
 
 
     /**
-     * @Rest\Put("/tracks/{id}")
+     * @Rest\Put("/api/tracks/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -82,7 +82,7 @@ class TracksController extends FOSRestController
 
 
     /**
-     * @Rest\Delete("/tracks/{id}")
+     * @Rest\Delete("/api/tracks/{id}")
      */
     public function deleteAction($id)
     {

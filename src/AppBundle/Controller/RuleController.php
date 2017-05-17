@@ -14,7 +14,7 @@ class RuleController extends FOSRestController
 {
 
     /**
-     * @Rest\Get("/rule")
+     * @Rest\Get("/api/rule")
      */
     public function getAction()
     {
@@ -29,7 +29,7 @@ class RuleController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/rule/{id}")
+     * @Rest\Get("/api/rule/{id}")
      */
     public function getRuleAction($id)
     {
@@ -42,7 +42,7 @@ class RuleController extends FOSRestController
 
 
     /**
-     * @Rest\Put("/rule/{id}")
+     * @Rest\Put("/api/rule/{id}")
      */
     public function updateAction($id, Request $request)
     {

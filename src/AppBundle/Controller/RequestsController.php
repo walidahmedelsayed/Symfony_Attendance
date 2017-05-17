@@ -13,7 +13,7 @@ use AppBundle\Entity\Request as myRequest;
 class RequestsController extends FOSRestController
 {
     /**
-     * @Rest\Get("/requests")
+     * @Rest\Get("/api/requests")
      */
     public function getAction()
     {
@@ -27,7 +27,7 @@ class RequestsController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/requests/{id}")
+     * @Rest\Get("/api/requests/{id}")
      */
     public function getRequestAction($id)
     {
@@ -39,7 +39,7 @@ class RequestsController extends FOSRestController
     }
 
     /**
-     * @Rest\Post("/requests")
+     * @Rest\Post("/api/requests")
      */
     public function postAction(Request $request)
     {
@@ -63,7 +63,7 @@ class RequestsController extends FOSRestController
     }
 
     /**
-     * @Rest\Put("/requests/{id}")
+     * @Rest\Put("/api/requests/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -84,7 +84,7 @@ class RequestsController extends FOSRestController
 
 
     /**
-     * @Rest\Delete("/requests/{id}")
+     * @Rest\Delete("/api/requests/{id}")
      */
     public function deleteAction($id)
     {

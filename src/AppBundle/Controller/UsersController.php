@@ -27,7 +27,7 @@ class UsersController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/users/{id}")
+     * @Rest\Get("/api/users/{id}")
      */
     public function getUserAction($id)
     {
@@ -40,7 +40,7 @@ class UsersController extends FOSRestController
 
 
     /**
-     * @Rest\Post("/users")
+     * @Rest\Post("/api/users")
      */
     public function postAction(Request $request)
     {
@@ -59,12 +59,12 @@ class UsersController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        
+
         return new View($data, Response::HTTP_OK);
     }
 
     /**
-     * @Rest\Put("/users/{id}")
+     * @Rest\Put("/api/users/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -98,7 +98,7 @@ class UsersController extends FOSRestController
 
 
     /**
-     * @Rest\Delete("/users/{id}")
+     * @Rest\Delete("/api/users/{id}")
      */
     public function deleteAction($id)
     {
