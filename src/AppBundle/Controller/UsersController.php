@@ -14,7 +14,7 @@ use AppBundle\Entity\User;
 class UsersController extends FOSRestController
 {
     /**
-     * @Rest\Get("/api/users")
+     * @Rest\Get("/users")
      */
     public function getAction()
     {
@@ -59,7 +59,7 @@ class UsersController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        
+
         return new View($data, Response::HTTP_OK);
     }
 
