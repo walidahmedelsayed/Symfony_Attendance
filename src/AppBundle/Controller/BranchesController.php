@@ -46,11 +46,12 @@ class BranchesController extends FOSRestController
     {
         $data = new Branch;
         $name = $request->get('name');
-
-        if (empty($name)) {
+        $city = $request->get('city');
+        if (empty($name) || empty($city)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
         $data->setName($name);
+        $data->setCity($city);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
@@ -65,17 +66,19 @@ class BranchesController extends FOSRestController
     public function updateAction($id, Request $request)
     {
         $name = $request->get('name');
+        $city = $request->get('city');
         $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($id);
 
         $sn = $this->getDoctrine()->getManager();
 
         if (empty($branch)) {
             return new View("branch not found", Response::HTTP_NOT_FOUND);
-        } elseif (!empty($name) && !empty($branch)) {
+        } elseif (!empty($name) && !empty($branch) && !empty($city)) {
             $branch->setName($name);
+            $branch->setCity($city);
 
             $sn->flush();
-            return new View("Branch Updated Successfully", Response::HTTP_OK);
+            return new View($branch, Response::HTTP_OK);
         } else return new View("Branch wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
