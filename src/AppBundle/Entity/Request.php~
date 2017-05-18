@@ -36,12 +36,7 @@ class Request
     private $status;
 
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="targetDate", type="datetime")
-     */
-    private $targetDate;
+
 
     /**
      * @var int
@@ -49,6 +44,23 @@ class Request
      * @ORM\Column(name="type", type="integer")
      */
     private $type;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="hoursLate", type="integer",options={"default" : 0})
+     */
+    private $hoursLate;
+
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="targetDate", type="date")
+     */
+    private $targetDate;
+
+
 
     /**
      * @var \DateTime
@@ -169,29 +181,7 @@ class Request
         return $this->user;
     }
 
-    /**
-     * Set targetDate
-     *
-     * @param \DateTime $targetDate
-     *
-     * @return Request
-     */
-    public function setTargetDate($targetDate)
-    {
-        $this->targetDate = $targetDate;
-
-        return $this;
-    }
-
-    /**
-     * Get targetDate
-     *
-     * @return \DateTime
-     */
-    public function getTargetDate()
-    {
-        return $this->targetDate;
-    }
+   
 
     /**
      * Set type
@@ -215,5 +205,53 @@ class Request
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set hoursLate
+     *
+     * @param integer $hoursLate
+     *
+     * @return Request
+     */
+    public function setHoursLate($hoursLate)
+    {
+        $this->hoursLate = $hoursLate;
+
+        return $this;
+    }
+
+    /**
+     * Get hoursLate
+     *
+     * @return integer
+     */
+    public function getHoursLate()
+    {
+        return $this->hoursLate;
+    }
+
+    /**
+     * Set targetDate
+     *
+     * @param \DateTime $targetDate
+     *
+     * @return Request
+     */
+    public function setTargetDate($targetDate)
+    {
+        $this->targetDate = $targetDate;
+
+        return $this;
+    }
+
+    /**
+     * Get targetDate
+     *
+     * @return \DateTime
+     */
+    public function getTargetDate()
+    {
+        return $this->targetDate;
     }
 }
