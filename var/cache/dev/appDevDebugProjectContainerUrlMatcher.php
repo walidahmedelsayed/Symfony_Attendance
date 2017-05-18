@@ -186,21 +186,31 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
             }
 
-            // app_default_index
-            if (rtrim($pathinfo, '/') === '/api') {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_app_default_index;
-                }
+        }
 
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'app_default_index');
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'app_default_index',);
+        // app_default_index
+        if ($pathinfo === '/home') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_app_default_index;
             }
-            not_app_default_index:
 
+            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'app_default_index',);
+        }
+        not_app_default_index:
+
+        // app_qr_get
+        if ($pathinfo === '/qr') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_app_qr_get;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\QrController::getAction',  '_route' => 'app_qr_get',);
+        }
+        not_app_qr_get:
+
+        if (0 === strpos($pathinfo, '/api')) {
             if (0 === strpos($pathinfo, '/api/r')) {
                 if (0 === strpos($pathinfo, '/api/requests')) {
                     // app_requests_get

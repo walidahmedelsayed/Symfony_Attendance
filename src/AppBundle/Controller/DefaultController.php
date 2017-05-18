@@ -14,7 +14,7 @@ use FOS\RestBundle\View\View;
 class DefaultController extends FOSRestController
 {
     /**
-     * @Rest\Get("/api/")
+     * @Rest\Get("/home")
      */
     public function indexAction(Request $request)
     {

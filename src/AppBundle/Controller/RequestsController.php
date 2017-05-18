@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
+use Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
@@ -15,8 +16,18 @@ class RequestsController extends FOSRestController
     /**
      * @Rest\Get("/api/requests")
      */
-    public function getAction()
+    public function getAction(Request $request)
     {
+
+
+        $extractor = new AuthorizationHeaderTokenExtractor(
+            'Bearer',
+            'Authorization'
+        );
+
+        $token = $extractor->extract($request);
+
+       // var_dump($request->get('user_id'));
 
         $restresult = $this->getDoctrine()->getRepository('AppBundle:Request')->findAll();
         if ($restresult === null) {
