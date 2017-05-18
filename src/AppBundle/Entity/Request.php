@@ -35,6 +35,21 @@ class Request
      */
     private $status;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="targetDate", type="datetime")
+     */
+    private $targetDate;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="type", type="integer")
+     */
+    private $type;
+
     /**
      * @var \DateTime
      *
@@ -152,5 +167,53 @@ class Request
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set targetDate
+     *
+     * @param \DateTime $targetDate
+     *
+     * @return Request
+     */
+    public function setTargetDate($targetDate)
+    {
+        $this->targetDate = $targetDate;
+
+        return $this;
+    }
+
+    /**
+     * Get targetDate
+     *
+     * @return \DateTime
+     */
+    public function getTargetDate()
+    {
+        return $this->targetDate;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Request
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

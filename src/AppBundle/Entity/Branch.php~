@@ -114,4 +114,28 @@ class Branch
     {
         return $this->tracks;
     }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Branch
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }

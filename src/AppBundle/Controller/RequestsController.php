@@ -44,14 +44,18 @@ class RequestsController extends FOSRestController
     public function postAction(Request $request)
     {
         $data = new myRequest;
+        $targetDate = $request->get('targetDate');
+        $type = $request->get('type');
         $body = $request->get('body');
         $date = new \DateTime('now');
         $status = 1;
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
 
-        if (empty($body) || empty($date) || empty($status) || empty($user)) {
+        if (empty($body) || empty($date) || empty($status) || empty($user) || empty($targetDate) || empty($type)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
+        $data->setTargetDate($targetDate);
+        $data->setType($type);
         $data->setBody($body);
         $data->setDate($date);
         $data->setStatus($status);
