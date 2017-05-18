@@ -12,7 +12,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 class DefaultController extends FOSRestController
 {
     /**
-     * @Rest\Get("/api/home")
+     * @Rest\Get("/home")
      */
     public function indexAction(Request $request)
     {
