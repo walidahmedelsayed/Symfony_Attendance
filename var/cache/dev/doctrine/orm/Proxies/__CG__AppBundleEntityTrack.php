@@ -64,10 +64,10 @@ class Track extends \AppBundle\Entity\Track implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'attendanceTime', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'name', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'users', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'branch'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'name', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'users', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'branch'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'attendanceTime', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'name', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'users', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'branch'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'name', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'users', '' . "\0" . 'AppBundle\\Entity\\Track' . "\0" . 'branch'];
     }
 
     /**
@@ -263,28 +263,6 @@ class Track extends \AppBundle\Entity\Track implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUsers', []);
 
         return parent::getUsers();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setAttendanceTime($attendanceTime)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAttendanceTime', [$attendanceTime]);
-
-        return parent::setAttendanceTime($attendanceTime);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAttendanceTime()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttendanceTime', []);
-
-        return parent::getAttendanceTime();
     }
 
 }
