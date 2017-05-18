@@ -199,6 +199,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_app_default_index:
 
+        // app_qr_get
+        if ($pathinfo === '/qr') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_app_qr_get;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\QrController::getAction',  '_route' => 'app_qr_get',);
+        }
+        not_app_qr_get:
+
         if (0 === strpos($pathinfo, '/api')) {
             if (0 === strpos($pathinfo, '/api/r')) {
                 if (0 === strpos($pathinfo, '/api/requests')) {
