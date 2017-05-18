@@ -24,7 +24,6 @@ class AuthController extends FOSRestController
         if(!$user) {
             throw $this->createNotFoundException();
         }
-
         // password check
         if($password != $user->getPassword()) {
             throw $this->createAccessDeniedException();
@@ -32,10 +31,13 @@ class AuthController extends FOSRestController
 
         // Use LexikJWTAuthenticationBundle to create JWT token that hold only information about user name
         $token = $this->get('lexik_jwt_authentication.encoder')
-            ->encode(['username' => $user->getUsername()]);
+            ->encode(['id' => $user->getId()]);
 
         // Return genereted tocken
-        return new JsonResponse(['token' => $token]);
+        return new JsonResponse(['token' => $token, 'user'=>['id'=>$user->getId(),
+                                                        'name'=>$user->getName(),
+                                                        'track'=>$user->getTrack()->getName()
+                                                        ]]);
     }
 
     /**

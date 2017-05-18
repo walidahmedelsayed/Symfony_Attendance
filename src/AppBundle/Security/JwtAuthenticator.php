@@ -18,6 +18,8 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
 {
     private $em;
     private $jwtEncoder;
+    private $user_id;
+
 
     public function __construct(EntityManager $em, DefaultEncoder $jwtEncoder)
     {
@@ -59,10 +61,11 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
             return;
         }
 
-        $username = $data['username'];
+        $id = $data['id'];
 
         $user = $this->em->getRepository('AppBundle:User')
-            ->findOneBy(['name' => $username]);
+            ->findOneBy(['id' => $id]);
+
 
         if(!$user){
             return;
@@ -74,6 +77,7 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        $this->user_id = $user->getId();
         return true;
     }
 
@@ -86,6 +90,7 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        $request->attributes->set('user_id', $this->user_id);
         return;
     }
 
