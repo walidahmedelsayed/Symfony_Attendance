@@ -15,7 +15,7 @@ use AppBundle\Entity\Rule;
 class StudentsAttendanceController extends FOSRestController
 {
     /**
-     * @Rest\Get("/studentsAttendance")
+     * @Rest\Get("/api/studentsAttendance")
      */
     public function getAction()
     {
@@ -29,7 +29,7 @@ class StudentsAttendanceController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/studentsAttendance/{id}")
+     * @Rest\Get("/api/studentsAttendance/{id}")
      */
     public function getStudentDetailsAction($id)
     {
@@ -44,7 +44,7 @@ class StudentsAttendanceController extends FOSRestController
 
 
     /**
-     * @Rest\Post("/studentsAttendance")
+     * @Rest\Post("/api/studentsAttendance")
      */
     public function postAction(Request $request)
     {
@@ -75,6 +75,6 @@ class StudentsAttendanceController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new View("Record Added Successfully", Response::HTTP_OK);
+        return new View($data, Response::HTTP_OK);
     }
 }

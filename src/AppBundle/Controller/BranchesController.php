@@ -13,7 +13,7 @@ use AppBundle\Entity\Branch;
 class BranchesController extends FOSRestController
 {
     /**
-     * @Rest\Get("/branches")
+     * @Rest\Get("/api/branches")
      */
     public function getAction()
     {
@@ -28,7 +28,7 @@ class BranchesController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/branches/{id}")
+     * @Rest\Get("/api/branches/{id}")
      */
     public function getBranchAction($id)
     {
@@ -40,47 +40,50 @@ class BranchesController extends FOSRestController
     }
 
     /**
-     * @Rest\Post("/branches")
+     * @Rest\Post("/api/branches")
      */
     public function postAction(Request $request)
     {
         $data = new Branch;
         $name = $request->get('name');
-
-        if (empty($name)) {
+        $city = $request->get('city');
+        if (empty($name) || empty($city)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
         $data->setName($name);
+        $data->setCity($city);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new View("Branch Added Successfully", Response::HTTP_OK);
+        return new View($data, Response::HTTP_OK);
     }
 
 
     /**
-     * @Rest\Put("/branches/{id}")
+     * @Rest\Put("/api/branches/{id}")
      */
     public function updateAction($id, Request $request)
     {
         $name = $request->get('name');
+        $city = $request->get('city');
         $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($id);
 
         $sn = $this->getDoctrine()->getManager();
 
         if (empty($branch)) {
             return new View("branch not found", Response::HTTP_NOT_FOUND);
-        } elseif (!empty($name) && !empty($branch)) {
+        } elseif (!empty($name) && !empty($branch) && !empty($city)) {
             $branch->setName($name);
+            $branch->setCity($city);
 
             $sn->flush();
-            return new View("Branch Updated Successfully", Response::HTTP_OK);
+            return new View($branch, Response::HTTP_OK);
         } else return new View("Branch wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
     /**
-     * @Rest\Delete("/branches/{id}")
+     * @Rest\Delete("/api/branches/{id}")
      */
     public function deleteAction($id)
     {

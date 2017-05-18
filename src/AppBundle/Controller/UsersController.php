@@ -1,8 +1,6 @@
 <?php
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +25,7 @@ class UsersController extends FOSRestController
 
 
     /**
-     * @Rest\Get("/users/{id}")
+     * @Rest\Get("/api/users/{id}")
      */
     public function getUserAction($id)
     {
@@ -40,7 +38,7 @@ class UsersController extends FOSRestController
 
 
     /**
-     * @Rest\Post("/users")
+     * @Rest\Post("/api/users")
      */
     public function postAction(Request $request)
     {
@@ -59,12 +57,12 @@ class UsersController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        
+
         return new View($data, Response::HTTP_OK);
     }
 
     /**
-     * @Rest\Put("/users/{id}")
+     * @Rest\Put("/api/users/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -84,21 +82,21 @@ class UsersController extends FOSRestController
             $user->setType($type);
 
             $sn->flush();
-            return new View("User Updated Successfully", Response::HTTP_OK);
+            return new View($user, Response::HTTP_OK);
         } elseif (empty($name) && !empty($password)) {
             $user->setPassword($password);
             $sn->flush();
-            return new View("role Updated Successfully", Response::HTTP_OK);
+            return new View($user, Response::HTTP_OK);
         } elseif (!empty($name) && empty($password)) {
             $user->setName($name);
             $sn->flush();
-            return new View("User Name Updated Successfully", Response::HTTP_OK);
+            return new View($user, Response::HTTP_OK);
         } else return new View("User name or role cannot be empty", Response::HTTP_NOT_ACCEPTABLE);
     }
 
 
     /**
-     * @Rest\Delete("/users/{id}")
+     * @Rest\Delete("/api/users/{id}")
      */
     public function deleteAction($id)
     {

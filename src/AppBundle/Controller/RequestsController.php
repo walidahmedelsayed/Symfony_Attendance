@@ -13,7 +13,7 @@ use AppBundle\Entity\Request as myRequest;
 class RequestsController extends FOSRestController
 {
     /**
-     * @Rest\Get("/requests")
+     * @Rest\Get("/api/requests")
      */
     public function getAction()
     {
@@ -27,7 +27,7 @@ class RequestsController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/requests/{id}")
+     * @Rest\Get("/api/requests/{id}")
      */
     public function getRequestAction($id)
     {
@@ -39,19 +39,23 @@ class RequestsController extends FOSRestController
     }
 
     /**
-     * @Rest\Post("/requests")
+     * @Rest\Post("/api/requests")
      */
     public function postAction(Request $request)
     {
         $data = new myRequest;
+        $targetDate = $request->get('targetDate');
+        $type = $request->get('type');
         $body = $request->get('body');
         $date = new \DateTime('now');
         $status = 1;
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
 
-        if (empty($body) || empty($date) || empty($status) || empty($user)) {
+        if (empty($body) || empty($date) || empty($status) || empty($user) || empty($targetDate) || empty($type)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
+        $data->setTargetDate($targetDate);
+        $data->setType($type);
         $data->setBody($body);
         $data->setDate($date);
         $data->setStatus($status);
@@ -59,11 +63,11 @@ class RequestsController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new View("Request Added Successfully", Response::HTTP_OK);
+        return new View($data, Response::HTTP_OK);
     }
 
     /**
-     * @Rest\Put("/requests/{id}")
+     * @Rest\Put("/api/requests/{id}")
      */
     public function updateAction($id, Request $request)
     {
@@ -78,13 +82,13 @@ class RequestsController extends FOSRestController
             $userrequest->setStatus($status);
 
             $sn->flush();
-            return new View("Request Updated Successfully", Response::HTTP_OK);
+            return new View($userrequest, Response::HTTP_OK);
         } else return new View("request wasn't updated", Response::HTTP_NOT_ACCEPTABLE);
     }
 
 
     /**
-     * @Rest\Delete("/requests/{id}")
+     * @Rest\Delete("/api/requests/{id}")
      */
     public function deleteAction($id)
     {

@@ -30,6 +30,14 @@ class Branch
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="Track", mappedBy="branch")
      */
     private $tracks;
@@ -105,5 +113,29 @@ class Branch
     public function getTracks()
     {
         return $this->tracks;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Branch
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
