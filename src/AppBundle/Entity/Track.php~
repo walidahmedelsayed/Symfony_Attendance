@@ -23,12 +23,24 @@ class Track
      */
     private $id;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="attendanceTime", type="datetime")
+     */
+    private $attendanceTime;
+
+
+
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="track")
@@ -137,5 +149,33 @@ class Track
     public function getUsers()
     {
         return $this->users;
+    }
+
+   
+
+
+
+    /**
+     * Set attendanceTime
+     *
+     * @param \DateTime $attendanceTime
+     *
+     * @return Track
+     */
+    public function setAttendanceTime($attendanceTime)
+    {
+        $this->attendanceTime = $attendanceTime;
+
+        return $this;
+    }
+
+    /**
+     * Get attendanceTime
+     *
+     * @return \DateTime
+     */
+    public function getAttendanceTime()
+    {
+        return $this->attendanceTime;
     }
 }

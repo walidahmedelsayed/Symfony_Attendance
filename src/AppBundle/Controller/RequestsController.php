@@ -58,6 +58,7 @@ class RequestsController extends FOSRestController
         $targetDate = $request->get('targetDate');
         $type = $request->get('type');
         $body = $request->get('body');
+        $hoursLate = $request->get('hoursLate');
         $date = new \DateTime('now');
         $status = 1;
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
@@ -71,6 +72,9 @@ class RequestsController extends FOSRestController
         $data->setDate($date);
         $data->setStatus($status);
         $data->setUser($user);
+        if($hoursLate){
+            $data->setHoursLate($hoursLate);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();

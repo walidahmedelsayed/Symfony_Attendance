@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Attendance;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,12 +49,25 @@ class StudentsAttendanceController extends FOSRestController
      */
     public function postAction(Request $request)
     {
-        $data = new StudentAttendance();
+
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
-        $attendanceRecord = $this->getDoctrine()->getRepository('AppBundle:Attendance')->find($request->get('attendance_id'));
-        $attendanceTime = $attendanceRecord->getDate();
         $arrivalTime = new \DateTime('now');
-        $hourLate = $attendanceTime->diff($arrivalTime)->format('%h');
+        $attendanceTime = $user->getTrack()->getAttendanceTime();
+        $attendanceRecord = new Attendance;
+        $attendanceRecord->setDate($arrivalTime);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($attendanceRecord);
+        $em->flush();
+        $diff = $user->getRequests()[0]->getTargetDate()->diff($attendanceRecord->getDate());
+        if (($user->getRequests()[0]->getStatus() == 2) && ($diff->format('%a') === '0')) {
+
+            $permission = $user->getRequests()[0]->getHoursLate();
+
+        } else {
+            $permission = 0;
+        }
+
+        $hourLate = $attendanceTime->diff($arrivalTime)->format('%h') - $permission;
         if ($hourLate > 0) {
             $minLate = ($attendanceTime->diff($arrivalTime)->format('%i')) + ($hourLate * 60);
         } else {
@@ -66,6 +80,7 @@ class StudentsAttendanceController extends FOSRestController
         if (empty($user)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
+        $data = new StudentAttendance();
         $data->setUser($user);
         $data->setAttendance($attendanceRecord);
         $data->setArrivalTime($arrivalTime);

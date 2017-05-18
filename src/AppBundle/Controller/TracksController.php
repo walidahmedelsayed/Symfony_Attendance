@@ -45,11 +45,13 @@ class TracksController extends FOSRestController
     {
         $data = new Track;
         $name = $request->get('name');
+        $attendanceTime = $request->get('attendanceTime');
         $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
-        if (empty($name) || empty($branch)) {
+        if (empty($name) || empty($branch) || empty($attendanceTime)) {
             return new View("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE);
         }
         $data->setName($name);
+        $data->setAttendanceTime($attendanceTime);
         $data->setBranch($branch);
 
         $em = $this->getDoctrine()->getManager();
@@ -65,14 +67,16 @@ class TracksController extends FOSRestController
     public function updateAction($id, Request $request)
     {
         $name = $request->get('name');
+        $attendanceTime = $request->get('attendanceTime');
         $branch = $this->getDoctrine()->getRepository('AppBundle:Branch')->find($request->get('branch_id'));
         $track = $this->getDoctrine()->getRepository('AppBundle:Track')->find($id);
         $sn = $this->getDoctrine()->getManager();
 
         if (empty($track)) {
             return new View("track not found", Response::HTTP_NOT_FOUND);
-        } elseif (!empty($name) && !empty($branch)) {
+        } elseif (!empty($name) && !empty($branch) && !empty($attendanceTime)) {
             $track->setName($name);
+            $track->setAttendanceTime($attendanceTime);
             $track->setBranch($branch);
 
             $sn->flush();

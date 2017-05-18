@@ -23,9 +23,9 @@ class Attendance
     private $id;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -43,7 +43,7 @@ class Attendance
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      *
      * @return Attendance
      */
@@ -57,7 +57,7 @@ class Attendance
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDate()
     {
