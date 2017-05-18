@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\QR;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,9 +24,15 @@ class QrController extends FOSRestController
      */
     public function getAction()
     {
+        $text = 'ITIOpenSOURCE';
 
+        $qr = new QR();
+        $qr->setQr($text);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($qr);
+        $em->flush();
         // Create a QR code
-        $qrCode = new QrCode('Life is too short to be generating QR codes');
+        $qrCode = new QrCode($text);
         $qrCode->setSize(300);
 
 

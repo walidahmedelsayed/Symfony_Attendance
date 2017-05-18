@@ -50,6 +50,10 @@ class StudentsAttendanceController extends FOSRestController
     public function postAction(Request $request)
     {
 
+        $qr = $request->get('qr');
+        $myQr = $this->getDoctrine()->getRepository('AppBundle:QR')->find(1)->getQr();
+        if($qr == $myQr)
+        {
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($request->get('user_id'));
         $arrivalTime = new \DateTime('now');
         $attendanceTime = $user->getTrack()->getAttendanceTime();
@@ -91,5 +95,10 @@ class StudentsAttendanceController extends FOSRestController
         $em->persist($data);
         $em->flush();
         return new View($data, Response::HTTP_OK);
+    }
+    else{
+        return new View("Wrong QR Code", Response::HTTP_NOT_FOUND);
+
+    }
     }
 }
